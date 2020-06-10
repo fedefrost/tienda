@@ -9,7 +9,7 @@ const Directory = props => {
         <div className="directory">
 
             <div className="wrap">
-                
+
                 <div
                     className="item"
                     style={{
@@ -17,7 +17,18 @@ const Directory = props => {
                     }}
                 >
                     <a href="/#"> 
-                        Shop Womens
+                        Tienda 1
+          </a>
+                </div>
+
+                <div
+                    className="item"
+                    style={{
+                        backgroundImage: `url(${Helado})`
+                    }}
+                >
+                    <a href="/#"> 
+                        Tienda 1
           </a>
                 </div>
 
@@ -25,8 +36,8 @@ const Directory = props => {
         </div>
 
 
-    )
+    );
 
-}
+};
 
 export default Directory;

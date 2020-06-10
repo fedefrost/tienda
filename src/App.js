@@ -6,10 +6,14 @@ import './default.scss';
 function App() {
   return (
     <div className="App">
-     <Header />
+      <Header />
+      
+      <div className="main">
 
-     <Homepage />
-     
+        <Homepage />
+
+      </div>
+
     </div>
   );
 }
