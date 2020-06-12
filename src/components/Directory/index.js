@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import Helado from './../../assets/1.jpg';
+import Helado2 from './../../assets/2.jpeg';
 
 const Directory = props => {
 
@@ -17,18 +18,18 @@ const Directory = props => {
                     }}
                 >
                     <a href="/#"> 
-                        Tienda 1
+                        Bowls
           </a>
                 </div>
 
                 <div
                     className="item"
                     style={{
-                        backgroundImage: `url(${Helado})`
+                        backgroundImage: `url(${Helado2})`
                     }}
                 >
                     <a href="/#"> 
-                        Tienda 1
+                        Cakes
           </a>
                 </div>
 
