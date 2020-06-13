@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import {withRouter} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { signUpUser , resetAll} from './../../redux/User/users.actions';
 import './style.scss';
 
 //forms
@@ -8,15 +10,37 @@ import FormInput from './../../components/Forms/FormInput';
 import Buttons from './../../components/Forms/Button';
 import AuthWrapper from './../AuthWrapper'
 
+const mapState = ({ user }) => ({
+    signUpSuccess: user.signUpSuccess,
+    signUpError: user.signUpError
+})
+
 const Signup = props => {
+    const { signUpSuccess, signUpError } = useSelector(mapState);
+    const dispatch = useDispatch();
+    const [displayName, setDisplayname] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errors, setErrors] = useState('');
 
-    const[displayName, setDisplayname] = useState('');
-    const[email, setEmail] = useState('');
-    const[password, setPassword] = useState('');
-    const[confirmPassword, setConfirmPassword] = useState('');
-    const[errors, setErrors] = useState('');
+    useEffect(() => {
+        if (signUpSuccess) {
+            reset();
+            dispatch(resetAll());
+            props.history.push('/');
+        }
 
-    const reset = () =>{
+    }, [signUpSuccess]);
+
+    useEffect(() => {
+        if (Array.isArray(signUpError) && signUpError.length > 0) {
+            setErrors(signUpError);
+        }
+
+    }, [signUpError]);
+
+    const reset = () => {
         setDisplayname('');
         setEmail('');
         setPassword('');
@@ -24,24 +48,11 @@ const Signup = props => {
         setErrors([]);
     }
 
-   const handleFormSubmit = async event => {
+    const handleFormSubmit = event => {
         event.preventDefault();
-
-        if (password !== confirmPassword) {
-            const err = ['Password don\'t match'];
-            setErrors(err);
-            return;
-        }
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
-            await handleUserProfile(user, { displayName });
-
-            reset();
-            props.history.push('/');
-
-        } catch (err) {
-
-        }
+        dispatch(signUpUser({
+            displayName, email, password, confirmPassword
+        }));
     }
 
     const configAuthWrapper = {
@@ -67,17 +78,17 @@ const Signup = props => {
 
                 <form onSubmit={handleFormSubmit}>
 
-                    <FormInput type="text" name="displayName" value={displayName} 
-                    placeholder="Full name" handleChange={e => setDisplayname(e.target.value)} />
+                    <FormInput type="text" name="displayName" value={displayName}
+                        placeholder="Full name" handleChange={e => setDisplayname(e.target.value)} />
 
-                    <FormInput type="email" name="email" value={email} 
-                    placeholder="Email" handleChange={e => setEmail(e.target.value)} />
+                    <FormInput type="email" name="email" value={email}
+                        placeholder="Email" handleChange={e => setEmail(e.target.value)} />
 
-                    <FormInput type="password" name="password" value={password} 
-                    placeholder="Password" handleChange={e => setPassword(e.target.value)} />
+                    <FormInput type="password" name="password" value={password}
+                        placeholder="Password" handleChange={e => setPassword(e.target.value)} />
 
-                    <FormInput type="password" name="confirmPassword" value={confirmPassword} 
-                    placeholder="Confirm password" handleChange={e => setConfirmPassword(e.target.value)}/>
+                    <FormInput type="password" name="confirmPassword" value={confirmPassword}
+                        placeholder="Confirm password" handleChange={e => setConfirmPassword(e.target.value)} />
 
                     <Buttons type="submit">
                         Register
