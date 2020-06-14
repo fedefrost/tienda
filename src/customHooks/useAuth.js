@@ -10,7 +10,7 @@ const useAuth = props => {
 
     useEffect(() => {
         if (!currentUser) {
-            props.history.push('/login');
+           // props.history.push('/login');
         }
 
     }, [currentUser]);
