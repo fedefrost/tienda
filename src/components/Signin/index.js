@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { emailSignInStart, googleSignInStart} from './../../redux/User/users.actions';
+import { emailSignInStart, googleSignInStart} from './../../redux/User/user.actions';
 import './style.scss';
 
 //forms

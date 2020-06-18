@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Logo from './../../assets/logo.png';
 import './style.scss';
-import { signOutUserStart } from './../../redux/User/users.actions'
+import { signOutUserStart } from './../../redux/User/user.actions'
 
 
 const mapState = ({ user }) => ({
@@ -41,9 +41,10 @@ const Header = props => {
                                     my account
                                 </Link>
                             </li>
-
                             <li>
-                                <span onClick={() => signOut()}>Logout</span>
+                                <Link to="/">
+                                    <span onClick={() => signOut()}>Logout</span>
+                                </Link>
                             </li>
                         </ul>
                     )}
