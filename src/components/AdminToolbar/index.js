@@ -15,10 +15,8 @@ const AdminToolBar = props => {
 
     if(!isAdmin) return null;
 
-
-
     return (
-        <div className="adminToolBar">
+        <div className="adminBar">
             <ul>
                 <li>
                     <Link to="/admin">

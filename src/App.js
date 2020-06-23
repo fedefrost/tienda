@@ -10,6 +10,8 @@ import WithAdmin from './hoc/withAdminAuth';
 
 //layout
 import MainLayout from './layouts/MainLayout';
+import DashboardLayout from './layouts/DashboardLayout';
+import AdminLayout from './layouts/AdminLayout';
 import HomePageLayout from './layouts/HomePageLayout';
 
 //pages
@@ -22,6 +24,8 @@ import Admin from './pages/Admin';
 
 //toolbar
 import AdminToolBar from './components/AdminToolbar';
+
+
 
 const App = props => {
 
@@ -72,17 +76,17 @@ const App = props => {
 
         <Route path="/dashboard" render={() => (
           <WithAuth>
-            <MainLayout>
+            <DashboardLayout>
               <Dashboard />
-            </MainLayout>
+            </DashboardLayout>
           </WithAuth>
         )} />
 
         <Route path="/admin" render={() => (
           <WithAdmin>
-            <MainLayout>
+            <AdminLayout>
               <Admin />
-            </MainLayout>
+            </AdminLayout>
           </WithAdmin>
         )} />
 
