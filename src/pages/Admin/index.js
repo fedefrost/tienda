@@ -64,7 +64,7 @@ const Admin = props => {
         <ul>
           <li>
             <Button onClick={() => toggleModal()}>
-              Add new product
+              Add new product $$
             </Button>
           </li>
         </ul>
